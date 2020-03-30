@@ -178,6 +178,7 @@
 
 - JSON（JavaScriptSerializedObjectNotation）は、JavaScriptを基礎としたテキストベースの軽量データフォーマット
 - JSONの背景にある考え方は、「人間にとっても機械にとっても読みやすいもの」
+- ライブラリencoding/jsonを使う
 
 ### 7.5.1 JSONデータの解析
 
