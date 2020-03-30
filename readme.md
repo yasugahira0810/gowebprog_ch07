@@ -95,7 +95,11 @@
         *2, 3, 4に当てはまらない場合、構造体のフィールドは構造体名と同じ名前のXML要素と対応付けられる。モードフラグは「,」の後についている。* 
   6. 木構造を追ってXML要素に到達するのではなく、要素を直接取得したい場合は、構造体タグ`xml:"a>b>c"`を使う。ここでaとbは中間の要素で、cは取得したいノード。
 
-- *書籍だとシンプルなXMLの解析をリスト7.2、少し複雑なXMLの解析をリスト7.5, 7.6で説明しているが、いきなりリスト7.5, 7.6の説明でも問題なさそうなので、リスト7.5, 7.6のサンプルプログラム[05xml_parsing_unmarshal_2/xml.go](05xml_parsing_unmarshal_2/xml.go)と[05xml_parsing_unmarshal_2/post.xml](05xml_parsing_unmarshal_2/post.xml)を見ながら説明。*
+- コードと解析対象XML
+
+  - [05xml_parsing_unmarshal_2/xml.go](05xml_parsing_unmarshal_2/xml.go)
+  - [05xml_parsing_unmarshal_2/post.xml](05xml_parsing_unmarshal_2/post.xml)
+  - *書籍だとシンプルなXMLの解析をリスト7.2、少し複雑なXMLの解析をリスト7.5, 7.6で説明しているが、いきなりリスト7.5, 7.6の説明でも問題なさそうなので、リスト7.5, 7.6のサンプルプログラム*
 
 - 実行結果は以下の通り
 
@@ -134,6 +138,11 @@
 
 - 手順（３ステップ）
   <img src="figures/xmlDecoderProcedure.png" alt="xmlDecoderProcedure" style="zoom:50%;" />
+
+- コードと解析対象XML
+
+  - [06xml_parsing_decoder/xml.go](06xml_parsing_decoder/xml.go)
+  - [06xml_parsing_decoder/post.xml](06xml_parsing_decoder/post.xml)
 
 - 型アサーション
 
