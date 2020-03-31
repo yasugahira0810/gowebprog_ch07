@@ -36,9 +36,13 @@ func main() {
 	}
 	defer xmlFile.Close()
 
+	// 関数NewDecoderにio.Readerを渡す（この場合はpost.xml）
 	decoder := xml.NewDecoder(xmlFile)
+	// decoder内のXMLデータを順次処理（Unmarshalはioutil.ReadAllでファイルの中身全部読み込んでいた）
 	for {
+		// decoderからトークン（Token）を取得。この場合、トークンはXML要素を表すインタフェース
 		t, err := decoder.Token()
+		// トークンがなくなるまでデコーダから取り出し続けたい。トークンがなくなるとerrに構造体io.EOFが代入される
 		if err == io.EOF {
 			break
 		}
@@ -47,12 +51,19 @@ func main() {
 			return
 		}
 
+		// トークンの型を表示
+		fmt.Printf("Token: %T\n", t)
+
+		// tはdecoderから取得したトークン。トークンの型をチェックする。
 		switch se := t.(type) {
 		case xml.StartElement:
+			// デコーダからトークンを取り出すたびに、XML要素の開始タグがチェックする
 			if se.Name.Local == "comment" {
 				var comment Comment
 				decoder.DecodeElement(&comment, &se)
-				fmt.Println(comment)
+				fmt.Println(comment.Id)
+				fmt.Println(comment.Content)
+				fmt.Println(comment.Author)
 			}
 		}
 	}

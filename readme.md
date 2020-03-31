@@ -84,9 +84,10 @@
 ![structTag](figures/structTag.png)
 
 - 構造体タグが従うべき規則
+
   1. XML要素名自体を保存するには（通常は構造体名が要素名になる）、XMLNameという名前でxml.Nameという型のフィールドを追加する。要素名がこのフィールドに保存される。
   2. XML要素の属性を保存するには、属性と同じ名前のフィールドを定義し、`xml:"<属性名>,attr"`という構造体タグを使用する。ここで<属性名>はXML属性の名前。
-  3. XML要素の文字データを保存するには、XML要素タグと同名のフィールドを定義し、`xml:",chardata"`という構造体タグを使用する。
+  3. XML要素の文字データを保存するには、XML要素タグと同名のフィールドを定義し、`xml:",chardata"`という構造体タグを使用する。*（同名のフィールドではなく、同名の構造体では？[参考](https://xn--go-hh0g6u.com/pkg/encoding/xml/)）*
   4. XML要素から未処理のままで（生の）XMLを得るには、フィールドを定義し（名前は何でもかまわない）`xml:",innerxml"`という構造体タグを使用する。
   5. モードフラグ（,attr、,chardata、,innerxmlなどのようなもの）がない場合、構造体のフィールドは構造体名と同じ名前のXML要素と対応付けられる。
      1. *モードフラグattrの場合：2*
@@ -94,6 +95,8 @@
      3. *モードフラグinnerxmlの場合：4*
         *2, 3, 4に当てはまらない場合、構造体のフィールドは構造体名と同じ名前のXML要素と対応付けられる。モードフラグは「,」の後についている。* 
   6. 木構造を追ってXML要素に到達するのではなく、要素を直接取得したい場合は、構造体タグ`xml:"a>b>c"`を使う。ここでaとbは中間の要素で、cは取得したいノード。
+
+  **上記の規則は数ある規則の一部にすぎない点には留意すること**
 
 - コードと解析対象XML
 
@@ -105,6 +108,7 @@
 
   ```xml
   $ go run xml.go
+  ##### 構造体Post #####
   post
   1
   Hello World!
@@ -123,8 +127,12 @@
       </comment>
     </comments>
   
+  
+  ##### 構造体Author #####
   2
   Sau Sheong
+  
+  ##### 構造体Comment #####
   [{1 Have a great day! { Adam}} {2 How are you today? { Betty}}]
   1
   Have a great day!
@@ -159,6 +167,41 @@
     ```
 
   - *スターティングGo言語の型アサーションの説明がわかりやすかったので、それで説明。*
+
+  - このサンプルだと取得したトークンを構造体Postや構造体Authorに格納するところはやっていない。構造体Commentで雰囲気を掴めれば構造体Post, Authorも同じように扱えるから省略していると思われる。
+
+    ```
+    Token: xml.ProcInst
+    Token: xml.CharData
+    Token: xml.StartElement
+    Token: xml.CharData
+    Token: xml.StartElement
+    Token: xml.CharData
+    Token: xml.EndElement
+    Token: xml.CharData
+    Token: xml.StartElement
+    Token: xml.CharData
+    Token: xml.EndElement
+    Token: xml.CharData
+    Token: xml.StartElement
+    Token: xml.CharData
+    Token: xml.StartElement
+    1
+    Have a great day!
+    {3 Adam}
+    Token: xml.CharData
+    Token: xml.StartElement
+    2
+    How are you today?
+    {4 Betty}
+    Token: xml.CharData
+    Token: xml.EndElement
+    Token: xml.CharData
+    Token: xml.EndElement
+    Token: xml.CharData
+    ```
+
+    
 
 ### 7.4.2 XMLの生成
 
