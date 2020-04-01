@@ -15,8 +15,8 @@
 | 7.3 RESTベースのWebサービスの基本 | - RESTの基本的な説明                                         | Go出てこないからさらっと説明                               |
 | 7.4 Go言語によるXMLの解析と生成   | - 7.4.1でXMLの解析について説明し、7.4.2でXMLの生成について説明<br />- 7.4.1では小さなXMLファイルが用途の関数Unmarshalと、ストリーム処理や大きなXMLが用途の構造体Decoderを説明<br />- 7.4.2ではその逆の働きをする関数Marshal(MarshalIndent)と構造体Encoderを使って、XMLの生成について説明<br />- 7.4.1をやれば、7章全体の半分以上はやったといっても過言ではないと思う。 | コードを見ながらしっかり説明                               |
 | 7.5 Go言語によるJSONの解析と生成  | - 基本XMLの説明と同じ                                        | さらっと説明                                               |
-| 7.6 Go Webサービスの作成          |                                                              | 動かしてさらっと説明                                       |
-| 7.7 まとめ                        |                                                              | さらっと説明                                               |
+| 7.6 Go Webサービスの作成          | - 6章までの内容を合わせて、フォーラムの投稿をCRUD処理するWebサービスを作る | 時間があれば動かす                                         |
+| 7.7 まとめ                        | まとめ                                                       | 省略                                                       |
 
 
 
@@ -241,7 +241,8 @@
 
 ## 7.6 Go Webサービスの作成
 
-- [Docker Compose用コード](https://github.com/yasugahira0810/go-jissen)
+- [Docker Compose用コード](https://github.com/yasugahira0810/go-jissen)（[nakajima1412さんのリポジトリ](https://github.com/nakajima1412/go-jissen)をちょっと変えただけです。感謝）
+- フォーラムの投稿を作成し、読み出し、更新することができる、RESTベースの単純なWebサービス
 
 ## 7.7 まとめ
 
